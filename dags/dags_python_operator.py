@@ -9,9 +9,6 @@ with DAG(
     schedule="30 6 * * *",
     start_date=pendulum.datetime(2025, 11, 24, tz="Asia/Seoul"),
     catchup=False,
-    #dagrun_timeout=datetime.timedelta(minutes=60),
-    #tags=["example", "example2"],
-    #params={"example_key": "example_value"},
 ) as dag:
     def select_fruit():
         fruit = ['APPLE', 'BANANA', 'ORANGE', 'AVOCADO']
@@ -19,7 +16,7 @@ with DAG(
         print(fruit[rand_int])
 
     py_t1 = PythonOperator(
-        task_id = 'py_t1'
+        task_id = 'py_t1',
         python_callable=select_fruit
     )
 
